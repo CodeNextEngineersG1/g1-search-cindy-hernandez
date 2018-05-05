@@ -14,7 +14,7 @@ var makeupDatabase = [
 	makeupLine: "TOO FACED",
 	price: 30.00,
 	stars: 3.5,
-	image: "Love-Light-Prismatic-Highlighter.png"
+	image: "img/Love-Light-Prismatic-Highlighter.png"
 },
 {
 	name: "Radiant Creamy Concealer",
@@ -22,7 +22,7 @@ var makeupDatabase = [
 	makeupLine: "NARS",
 	price: 30.00,
 	stars: 4.5,
-	image: "radiant-creamy-concealer.png"
+	image: "img/radiant-creamy-concealer.png"
 },
 {
 	name: "Naked Skin One & Done Blur on the Run Touch-Up & Finishing Balm",
@@ -30,7 +30,7 @@ var makeupDatabase = [
 	makeupLine: "URBAN DECAY",
 	price: 30.00,
 	stars: 3.5,
-	image: "finishing-balm.png"
+	image: "img/finishing-balm.png"
 },
 {
 	name: "Lock-It Foundation",
@@ -38,7 +38,7 @@ var makeupDatabase = [
 	makeupLine: "KAT VON D",
 	price: 35.00,
 	stars: 4,
-	image: "Lock-It-Foundation.png"
+	image: "img/Lock-It-Foundation.png"
 },
 {
 	name: "Soft Glam Eyeshadow Palette",
@@ -46,41 +46,41 @@ var makeupDatabase = [
 	makeupLine: "ANASTASIA BEVERLY HILLS",
 	price: 42,
 	stars: 5,
-	image: "Soft-Glam-Eyeshadow-Palette.png"
+	image: "img/Soft-Glam-Eyeshadow-Palette.png"
 }
 ]
 
 function checkKey(e){
-	var key = e.which || e.keyCode;
-	if(key == 13) {
-    	console.log(“You pressed enter!”);
-  	}
+	var key = e.which ||e.keyCode;
+	if(key == 13){
+		processInput()
+	}
 }
 
-function processInput(e){
+function processInput(){
 	var cleanedInput = searchBar.value.toLowerCase().trim()
 	autoSuggestions.innerHTML = ""
 	autoSuggestions.style.display = "none"
-	searchBar = ""
+	searchBar.value = ""
 	var databaseRecord = getRecord(cleanedInput)
-	if(databaseRecord != null){
+	if(databaseRecord !== null){
 		displayRecord(databaseRecord)
-
 	}else{
-		alert(“No results.”)
+		alert("No results.")
 	}
 
 
 }
 
 function getRecord(cleanedInput){
-	for(var i = 0; i<makeupDatabase; i ++){
-		var cleanedRecordName = database[i].name.toLowerCase().trim()
+	for( i = 0; i < makeupDatabase.length; i ++){
+		var cleanedRecordName = makeupDatabase[i].name.toLowerCase().trim()
+		if(cleanedInput == cleanedRecordName){
+			return  makeupDatabase[i]
+		}
 	}
-	if(cleanedInput=cleanedRecordName){
-		return  databaseRecord
-	}
-	return null
+		return null
+		
 }
 
 function displayRecord(databaseRecord){
@@ -98,7 +98,7 @@ function displayRecord(databaseRecord){
 	recordStars.innerHTML = "<b>Rating:</b> " + databaseRecord.stars;
 
 	display.appendChild(recordName);
-	display.appendChild(recordImage;
+	display.appendChild(recordImage);
 	display.appendChild(recordType);
 	display.appendChild(recordMakeupLine);
 	display.appendChild(recordPrice);
